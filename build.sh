@@ -13,6 +13,12 @@ TOTAL_SIZE=${TOTAL_SIZE:-"8GB"}
 EFI_SIZE=${EFI_SIZE:-"261MiB"}
 UUID=${UUID:-"dddddddd-0000-cccc-eeee-222222222222"}
 
+mkdir --parents rootfs/
+mkdir --parents output/
+for bootloader in bootloaders/*/; do
+    mkdir --parents $bootloader/output/
+done
+
 bootloader() {
     sudo podman build   --tag=podman2vm_boot \
                         --build-arg="VMLINUZ=$VMLINUZ" \
