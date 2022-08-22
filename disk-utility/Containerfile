@@ -1,0 +1,5 @@
+FROM docker.io/alpine:latest
+RUN apk add --no-cache parted losetup util-linux dosfstools e2fsprogs archivemount rsync pv
+COPY disk.sh /disk.sh
+ENTRYPOINT ["/bin/sh"]
+CMD ["/disk.sh"]
